@@ -1,9 +1,20 @@
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Builder;
+using App.Web.Mvc.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<App.Web.Mvc.Data.AppDbContext>(
+    options =>
+    {
+        options.UseSqlServer(builder.Configuration.GetConnectionString("DBConStr"));
+    }
+);
+
 
 var app = builder.Build();
 
