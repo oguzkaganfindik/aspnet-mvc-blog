@@ -1,0 +1,67 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="myCanvas" width="400" height="400"></canvas>
+
+    <script>
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+        
+        var centerX = canvas.width / 2;
+        var centerY = canvas.height / 2;
+        
+        var numLoops = 60; 
+        var numRings = 10; 
+        var numPoints = 100; 
+        var radiusIncrement = 20;
+        var angleIncrement = 2 * Math.PI / numPoints;
+        
+        var rotationSpeed = 2 * Math.PI * 60 / 3600; 
+        var currentRotation = 0;
+        
+        function drawHelix() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            for (var j = 0; j < numRings; j++) {
+                var currentRadius = radiusIncrement * j;
+                ctx.beginPath();
+                
+                for (var i = 0; i < numPoints; i++) {
+                    var angle = i * angleIncrement + currentRotation;
+                    var x = centerX + (currentRadius + rotationSpeed * i) * Math.cos(angle);
+                    var y = centerY + (currentRadius + rotationSpeed * i) * Math.sin(angle);
+                    ctx.lineTo(x, y);
+                }
+                
+                ctx.strokeStyle = "blue";
+                ctx.lineWidth = 2;
+                ctx.stroke();
+            }
+            
+            currentRotation += rotationSpeed;
+            
+            requestAnimationFrame(drawHelix);
+        }
+        
+        drawHelix();
+    </script>
+</body>
+</html>

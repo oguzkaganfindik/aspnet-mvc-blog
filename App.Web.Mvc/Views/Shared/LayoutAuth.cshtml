@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Load bootstrap 3 -->
+    <link rel="stylesheet" type="text/css" media="screen" href="~/dist/assets/bootstrap/css/bootstrap.css" />
+    <!-- Custom style -->
+    <style>
+        body {
+            background-color: #3498db;
+        }
+
+        .panel-style {
+            padding-top: 70px;
+        }
+    </style>
+</head>
+<body>
+
+
+   @RenderBody()
+
+
+
+
+
+    <script src="~/dist/assets/jquery/jquery-3.3.1.min.js"></script>
+    <script src="~/dist/assets/bootstrap/js/bootstrap.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
